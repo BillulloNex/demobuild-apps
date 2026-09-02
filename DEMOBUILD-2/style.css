@@ -1,0 +1,100 @@
+:root {
+  --black: #111;
+  --white: #fff;
+  --accent: #008060;
+  --border: #ddd;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  background: var(--white);
+  color: var(--black);
+  line-height: 1.5;
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 3rem;
+}
+
+header { margin-bottom: 2rem; }
+
+h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.sub {
+  font-size: 0.9rem;
+  color: var(--black);
+  opacity: 0.7;
+  margin-bottom: 1rem;
+}
+
+.progress-wrap {
+  height: 6px;
+  background: var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background: var(--accent);
+  transition: width 0.2s;
+}
+
+.progress-text {
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+}
+
+section { margin-bottom: 1.5rem; }
+
+section h2 {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+}
+
+label {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.65rem 0;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+label:last-child { border-bottom: none; }
+
+input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  accent-color: var(--accent);
+  flex-shrink: 0;
+}
+
+label.done span.desc { opacity: 0.45; text-decoration: line-through; }
+
+span.desc { flex: 1; }
+
+footer { margin-top: 2rem; }
+
+#resetBtn {
+  background: none;
+  border: 1px solid var(--black);
+  color: var(--black);
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+#resetBtn:hover { background: var(--black); color: var(--white); }
