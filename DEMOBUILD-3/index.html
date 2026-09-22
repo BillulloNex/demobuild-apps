@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f2ebdc">
+  <title>One Good Bet — Idea Prioritizer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="One Good Bet home"><span class="brand-mark">1</span><span>ONE GOOD BET</span></a>
+    <nav aria-label="Primary navigation"><a href="#ideas">Ideas</a><a href="#ranking">Ranking</a><a href="#commitment">Plan</a></nav>
+    <button class="text-button danger" id="resetButton" type="button">Reset workspace</button>
+  </header>
+  <main id="top">
+    <section class="hero section-shell">
+      <div><p class="eyebrow">Decision workspace · <span id="ideaCount">3 ideas</span></p><h1>Choose the idea<br><em>worth testing.</em></h1></div>
+      <div class="hero-note"><p>Good decisions need evidence, not certainty. Score what you know, compare the trade-offs, then commit to one small test.</p><a class="arrow-link" href="#ideas">Start with your ideas <span>↓</span></a></div>
+    </section>
+    <section class="section-shell workspace" id="ideas">
+      <div class="section-heading"><div><p class="step">01 / CAPTURE</p><h2>Your idea bench</h2></div><button class="primary-button" id="addIdeaButton" type="button">+ Add an idea</button></div>
+      <p class="section-intro">Keep each idea concrete. You can replace the sample ideas, edit them, or clear everything and begin fresh.</p><div class="idea-list" id="ideaList"></div>
+    </section>
+    <section class="ink-section" id="ranking"><div class="section-shell">
+      <div class="section-heading inverse"><div><p class="step">02 / WEIGH</p><h2>Make the trade-offs visible</h2></div><div class="score-key"><span></span> Scores are directional, not guarantees.</div></div>
+      <div class="weights-panel"><div class="weights-copy"><h3>Your decision lens</h3><p>Adjust the importance of each category. Rankings respond instantly.</p><strong id="weightTotal">100% total weight</strong></div><div class="weights-grid" id="weightsGrid"></div></div>
+      <div class="ranking-layout"><div><div class="mini-heading"><span>RANKED SHORTLIST</span><span>WEIGHTED / 100</span></div><div id="rankingList" class="ranking-list"></div></div><aside class="explain-card"><p class="step">HOW IT WORKS</p><h3>Every point has a visible reason.</h3><p>Each 1–5 category score is multiplied by its displayed weight. The result is normalized to 100.</p><div class="formula"><span>category score</span><b>×</b><span>category weight</span><b>→</b><span>total score</span></div><p class="muted">Use the ranking to focus your questions—not to outsource your judgment.</p></aside></div>
+    </div></section>
+    <section class="section-shell comparison-section"><div class="section-heading"><div><p class="step">03 / COMPARE</p><h2>Top three, side by side</h2></div></div><div class="comparison-grid" id="comparisonGrid"></div></section>
+    <section class="commit-section" id="commitment"><div class="section-shell"><div class="section-heading"><div><p class="step">04 / COMMIT</p><h2>Turn one idea into movement</h2></div></div><div class="commit-grid">
+      <div class="commit-picker"><label for="selectedIdea">The idea I will test</label><select id="selectedIdea"></select><label for="commitmentWindow">Commitment window</label><select id="commitmentWindow"><option value="7 days">7 days</option><option value="14 days">14 days</option><option value="30 days">30 days</option><option value="6 weeks">6 weeks</option></select><div class="commit-statement" id="commitStatement"></div></div>
+      <div class="plan-panel" id="planPanel"><div class="plan-header"><div><p class="step">VALIDATION BRIEF</p><h3 id="planTitle">Choose an idea to begin</h3></div><div class="progress-ring" id="progressRing"><span id="progressValue">0%</span></div></div><div class="plan-fields" id="planFields"></div><div class="actions-heading"><h4>Next seven actions</h4><span id="actionProgress">0 of 7 complete</span></div><div class="action-list" id="actionList"></div></div>
+    </div></div></section>
+  </main>
+  <dialog id="ideaDialog"><form method="dialog" id="ideaForm"><div class="dialog-top"><div><p class="step" id="dialogEyebrow">NEW IDEA</p><h2 id="dialogTitle">Add to the bench</h2></div><button class="icon-button" value="cancel" aria-label="Close">×</button></div><input type="hidden" id="editingId"><label for="ideaName">Short name</label><input id="ideaName" maxlength="60" required placeholder="e.g. Neighborhood meal prep"><label for="ideaDescription">One-sentence description</label><textarea id="ideaDescription" maxlength="240" required placeholder="Who it helps and what problem it solves"></textarea><div class="scoring-form" id="scoringForm"></div><p class="form-error" id="formError" role="alert"></p><div class="dialog-actions"><button class="secondary-button" value="cancel" type="button" id="cancelDialog">Cancel</button><button class="primary-button" value="default" type="submit">Save idea</button></div></form></dialog>
+  <dialog id="resetDialog" class="confirm-dialog"><form method="dialog"><p class="step">CLEAR WORKSPACE</p><h2>Start from a blank page?</h2><p>This removes every idea, score, commitment, and completed action from this browser.</p><div class="dialog-actions"><button class="secondary-button" value="cancel">Keep my work</button><button class="danger-button" id="confirmReset" value="default">Clear everything</button></div></form></dialog>
+  <footer><span>ONE GOOD BET</span><p>Small tests create useful evidence.</p><a href="#top">Back to top ↑</a></footer><script src="app.js"></script>
+</body>
+</html>
