@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <title>Store Health Check</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="top">
+      <h1>Store Health Check</h1>
+      <nav aria-label="Sections">
+        <a href="#setup">Setup</a>
+        <a href="#survey">Diagnostic</a>
+        <a href="#results">Results</a>
+        <a href="#plan">Plan</a>
+      </nav>
+      <button id="resetButton" type="button">Reset</button>
+    </div>
+  </header>
+
+  <main>
+    <section id="setup">
+      <div class="section-head">
+        <h2>Your stores</h2>
+        <button id="sampleButton" type="button">Load sample data</button>
+      </div>
+      <p class="note">Pick the channels and markets you sell in. Every answer stays in this browser.</p>
+      <div class="chips" id="channelChips" role="group" aria-label="Channels"></div>
+      <div class="chips" id="marketChips" role="group" aria-label="Markets"></div>
+      <div class="field">
+        <label for="weeksLive">Weeks live</label>
+        <input id="weeksLive" type="number" min="0" max="520" step="1" placeholder="e.g. 52">
+        <p class="hint" id="weeksHint"></p>
+      </div>
+    </section>
+
+    <section id="survey">
+      <div class="section-head">
+        <h2>Diagnostic <span id="progressLabel"></span></h2>
+      </div>
+      <p class="note">Answer what you know. Blank answers count as unknown and lower the confidence of that pillar, not the whole score.</p>
+      <div id="questionList"></div>
+    </section>
+
+    <section id="results">
+      <div class="section-head">
+        <h2>Results</h2>
+        <span id="overallWrap"></span>
+      </div>
+      <p class="note">Scores show how complete each pillar looks today. A low score is a starting point to fix, not a verdict. This is a diagnostic aid to help you decide what to work on first — it is not a guarantee of sales.</p>
+      <div id="pillarGrid"></div>
+      <h3>Likely blockers</h3>
+      <p class="note">Ranked by impact. The ranking updates as you change answers.</p>
+      <div id="blockerList"></div>
+    </section>
+
+    <section id="plan">
+      <div class="section-head">
+        <h2>Fix plan</h2>
+        <span id="planProgress"></span>
+      </div>
+      <div id="planList"></div>
+    </section>
+  </main>
+
+  <dialog id="resetDialog">
+    <form method="dialog">
+      <h3>Clear everything?</h3>
+      <p>This removes your channels, answers, scores, and checklist progress from this browser.</p>
+      <div class="dialog-actions">
+        <button value="cancel" type="submit">Keep my data</button>
+        <button value="confirm" class="primary" type="submit">Clear all</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
