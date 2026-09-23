@@ -343,7 +343,7 @@
     confirmText: document.getElementById('confirmText'),
     confirmYes: document.getElementById('confirmYes'),
     confirmNo: document.getElementById('confirmNo')
- ;
+  };
 
   let filterRole = 'all';
 
