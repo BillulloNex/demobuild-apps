@@ -450,8 +450,8 @@
     grid.innerHTML = "";
     PILLARS.forEach(function (p) {
       var score = pillars[p.id];
-      var card = document.createElement("div");
-      card.className = "pillar";
+      var box = document.createElement("div");
+      box.className = "pillar";
 
       var top = document.createElement("div");
       top.className = "pillar-top";
@@ -462,24 +462,23 @@
       s.className = "score";
       s.textContent = score === null ? "—" : score;
       top.appendChild(s);
-      card.appendChild(top);
+      box.appendChild(top);
 
       var bar = document.createElement("div");
       bar.className = "bar";
       var fill = document.createElement("i");
       fill.style.width = (score === null ? 0 : score) + "%";
       bar.appendChild(fill);
-      card.appendChild(bar);
+      box.appendChild(bar);
 
+      var answeredHere = QUESTIONS.filter(function (q) { return q.pillar === p.id && typeof state.answers[q.id] === "number"; }).length;
       var why = document.createElement("p");
       why.className = "why";
       why.textContent = score === null
         ? "No answers yet — score appears once you answer a question here."
-        : "From your " + QUESTIONS.filter(function (q) { return q.pillar === p.id && typeof state.answers[q.id] === "number"; }).length +
-          " answered question" + (QUESTIONS.filter(function (q) { return q.pillar === p.id && typeof state.answers[q.id] === "number"; }).length === 1 ? "" : "s") +
-          " in " + p.name.toLowerCase() + ".";
-      card.appendChild(why);
-      grid.appendChild(card);
+        : "From your " + answeredHere + " answered question" + (answeredHere === 1 ? "" : "s") + " in " + p.name.toLowerCase() + ".";
+      box.appendChild(why);
+      grid.appendChild(box);
     });
 
     var list = el("blockerList");
