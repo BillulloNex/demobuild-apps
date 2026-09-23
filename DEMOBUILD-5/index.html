@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="A practical everyday communication board for mixed-language hotel and restaurant teams: role phrases, quick messages, and a shift handover board. No signup required.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%92%AC%3C/text%3E%3C/svg%3E">
+  <title>Shift Talk — Team Communication Board</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="top">
+      <h1>Shift Talk</h1>
+      <nav aria-label="Sections">
+        <a href="#setup">Setup</a>
+        <a href="#pinned">Most used</a>
+        <a href="#phrases">Phrases</a>
+        <a href="#message">Message</a>
+        <a href="#handover">Handover</a>
+      </nav>
+      <button id="resetButton" type="button">Reset</button>
+    </div>
+    <p class="tagline">An everyday phrase board for mixed-language hotel and restaurant teams. It helps people find the right words — it is a phrasebook tool, not a certified translator.</p>
+  </header>
+
+  <main>
+    <section id="setup">
+      <h2>Team setup</h2>
+      <p class="note">Pick the languages your team actually speaks and the roles on shift. Everything stays in this browser — no account, nothing sent anywhere.</p>
+      <div class="field">
+        <h3>Team languages</h3>
+        <div id="langChips" class="chips" role="group" aria-label="Team languages"></div>
+        <p class="hint" id="langWarn" hidden>Select at least one language to see phrases and messages.</p>
+      </div>
+      <div class="field">
+        <h3>Roles on shift</h3>
+        <div id="roleChips" class="chips" role="group" aria-label="Roles on shift"></div>
+      </div>
+      <div class="field">
+        <h3>Team members</h3>
+        <form id="staffForm" class="row-form" autocomplete="off">
+          <input id="staffName" type="text" placeholder="Name" aria-label="Team member name">
+          <select id="staffRole" aria-label="Team member role"></select>
+          <select id="staffLang" aria-label="Team member language"></select>
+          <button type="submit">Add</button>
+        </form>
+        <p class="error" id="staffError" hidden></p>
+        <ul id="staffList" class="staff-list"></ul>
+        <p class="hint" id="staffEmpty" hidden>No team members yet. Add the people on shift so tasks can be assigned.</p>
+      </div>
+      <div class="row-form">
+        <button id="sampleButton" type="button">Load sample data</button>
+        <span class="hint">Restores an example team, tasks, and pinned phrases. Replaces current data.</span>
+      </div>
+    </section>
+
+    <section id="pinned">
+      <h2>Most used</h2>
+      <p class="note">Phrases you listen to, send, or pin show up here — one tap away.</p>
+      <p class="hint" id="pinnedEmpty" hidden>Nothing here yet. Use the star on any phrase, or listen to and send phrases as you work.</p>
+      <div id="pinnedList" class="pin-grid"></div>
+    </section>
+
+    <section id="phrases">
+      <h2>Phrase library</h2>
+      <p class="note">Everyday work phrases by role, shown in each of your team languages. The speaker button reads a phrase aloud.</p>
+      <input id="search" type="search" placeholder="Search phrases in any language…" aria-label="Search phrases">
+      <div id="roleFilter" class="chips small" role="group" aria-label="Filter by role"></div>
+      <p class="hint" id="searchEmpty" hidden>No phrase matches that search in your selected languages.</p>
+      <p class="hint" id="listenHint" hidden></p>
+      <div id="phraseList"></div>
+    </section>
+
+    <section id="message">
+      <h2>Quick message</h2>
+      <p class="note">Combine one or more preset phrases, add an optional detail (a room number, a time), then show the message in every team language at once. Details you type are shown exactly as you write them.</p>
+      <div class="row-form">
+        <select id="msgRole" aria-label="Message phrase role"></select>
+        <select id="msgPhrase" aria-label="Message phrase"></select>
+        <button id="msgAdd" type="button">Add phrase</button>
+      </div>
+      <p class="error" id="msgError" hidden></p>
+      <div id="msgBlocks" class="blocks"></div>
+      <div class="field">
+        <label for="msgDetail">Detail (optional)</label>
+        <input id="msgDetail" type="text" placeholder="e.g. Room 305 · at 21:00" aria-label="Message detail">
+      </div>
+      <div class="row-form">
+        <button id="msgShow" type="button" class="primary">Show in team languages</button>
+        <button id="msgClear" type="button">Clear message</button>
+      </div>
+      <div id="msgOutput" class="lang-panels"></div>
+    </section>
+
+    <section id="handover">
+      <h2>Shift handover board</h2>
+      <p class="note">Leave tasks for the next shift. Phrases display in the board language you choose; notes show as written. Tasks stay on this device and survive a refresh.</p>
+      <form id="taskForm" class="row-form" autocomplete="off">
+        <select id="taskRole" aria-label="Task phrase role"></select>
+        <select id="taskPhrase" aria-label="Task phrase"></select>
+        <input id="taskNote" type="text" placeholder="Optional note (room, time, name)" aria-label="Task note">
+        <select id="taskAssignee" aria-label="Assign to"></select>
+        <button type="submit">Add task</button>
+      </form>
+      <p class="error" id="taskError" hidden></p>
+      <div class="row-form">
+        <label for="boardLang">Display language</label>
+        <select id="boardLang" aria-label="Board display language"></select>
+        <label for="taskFilter">Show</label>
+        <select id="taskFilter" aria-label="Filter tasks">
+          <option value="open">Open</option>
+          <option value="done">Done</option>
+          <option value="all">All</option>
+        </select>
+      </div>
+      <p class="hint" id="boardEmpty" hidden></p>
+      <ul id="taskList" class="task-list"></ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>Shift Talk stores everything in this browser only. Use Reset to clear it. Phrase wording is everyday, plain language — for certified translation needs, use a professional translation service.</p>
+  </footer>
+
+  <div id="confirmBox" class="confirm" hidden>
+    <div class="confirm-card" role="alertdialog" aria-modal="true" aria-labelledby="confirmText">
+      <p id="confirmText"></p>
+      <div class="row-form">
+        <button id="confirmYes" type="button" class="primary">Yes</button>
+        <button id="confirmNo" type="button">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
