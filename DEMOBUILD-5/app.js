@@ -587,7 +587,7 @@
       <div class="label-row">
         <span class="en">${escapeHtml(p.translations.en)}</span>
         <div class="ctrl">
-          <button type="button" class="small listen" aria-label="Listen">🔊</button>
+          <button type="button" class="small listen" aria-label="Listen">Listen</button>
           <button type="button" class="small send" aria-label="Add to message">+</button>
           <button type="button" class="small star" aria-label="${fav ? 'Unpin' : 'Pin'}">${fav ? '★' : '☆'}</button>
         </div>
@@ -604,7 +604,7 @@
       const listenBtn = document.createElement('button');
       listenBtn.type = 'button';
       listenBtn.className = 'small';
-      listenBtn.textContent = '🔊';
+      listenBtn.textContent = 'Listen';
       listenBtn.setAttribute('aria-label', `Listen in ${l.name}`);
       listenBtn.addEventListener('click', () => speak(p.translations[c], l.voice));
       row.querySelector('.text').appendChild(listenBtn);
@@ -695,7 +695,7 @@
       const btn = document.createElement('button');
       btn.type = 'button';
       btn.className = 'small';
-      btn.textContent = '🔊 Listen';
+      btn.textContent = 'Listen';
       btn.addEventListener('click', () => speak(parts.join(' '), l.voice));
       panel.appendChild(btn);
       els.msgOutput.appendChild(panel);
@@ -719,7 +719,7 @@
         const l = LANGUAGES.find(x => x.code === c);
         return `<div><span class="lang-tag">${l.code}</span>${escapeHtml(p.translations[c] || '')}</div>`;
       }).join('');
-      card.innerHTML = `<div class="texts">${texts}</div><div class="ctrl"><button type="button" class="small listen" aria-label="Listen">🔊</button><button type="button" class="small send" aria-label="Add to message">+</button><button type="button" class="small star" aria-label="${state.favorites.includes(id) ? 'Unpin' : 'Pin'}">${state.favorites.includes(id) ? '★' : '☆'}</button></div>`;
+      card.innerHTML = `<div class="texts">${texts}</div><div class="ctrl"><button type="button" class="small listen" aria-label="Listen">Listen</button><button type="button" class="small send" aria-label="Add to message">+</button><button type="button" class="small star" aria-label="${state.favorites.includes(id) ? 'Unpin' : 'Pin'}">${state.favorites.includes(id) ? '★' : '☆'}</button></div>`;
       card.querySelector('.listen').addEventListener('click', () => speak(p.translations.en, 'en-US'));
       card.querySelector('.send').addEventListener('click', () => addBlockById(id));
       card.querySelector('.star').addEventListener('click', () => toggleFavorite(id));
